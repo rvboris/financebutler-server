@@ -1,0 +1,43 @@
+{
+  "name": "moneep",
+  "description": "Simple finance manager",
+  "version": "0.0.1",
+  "keywords": [
+    "finance",
+    "money"
+  ],
+  "maintainers": [
+    {
+      "name": "Ryabov Boris",
+      "email": "rv.boris@gmail.com",
+      "web": "http://hoursofcode.ru"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://bitbucket.org/rvboris/moneep"
+    }
+  ],
+  "licenses": [
+    {
+      "name": "CC-NC",
+      "url": "http://www.tldrlegal.com/license/CC-NC"
+    }
+  ],
+  "homepage": "http://moneep.com",
+  "dependencies": {
+    "express": "~3.3.4",
+    "authom": "~0.4.16",
+    "commander": "~2.0.0",
+    "connect-domain": "~0.5.0",
+    "fs-tools": "~0.2.10",
+    "helmet": "~0.1.0",
+    "json-store": "0.0.1",
+    "log": "~1.4.0",
+    "pg": "~2.3.1",
+    "stylus": "~0.36.0",
+    "sequelize": "~2.0.0-alpha2",
+    "hbs": "~2.3.1"
+  }
+}
