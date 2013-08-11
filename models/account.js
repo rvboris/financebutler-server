@@ -5,7 +5,11 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: false
 		},
 		startValue: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.DECIMAL,
+			allowNull: false
+		},
+		currentValue: {
+			type: DataTypes.DECIMAL,
 			allowNull: false
 		}
 	});

@@ -1,10 +1,10 @@
 module.exports = function(sequelize, DataTypes) {
 	return sequelize.define('User', {
-		email: {
+		name: {
 			type: DataTypes.STRING,
 			allowNull: false
 		},
-		password: {
+		apiKey: {
 			type: DataTypes.STRING,
 			allowNull: false
 		}

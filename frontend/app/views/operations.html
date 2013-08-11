@@ -1,0 +1,62 @@
+<div class="span4">
+  <h3>Расходы <button class="btn btn-danger" ng-class="{ disabled: !$parent.accounts.length }"><i class="icon icon-plus"></i> Внести расход</button></h3>
+  <hr>
+</div>
+
+<div class="span4" ng-controller="AccountCtrl">
+  <h3>Счета <button class="btn btn-primary" ng-click="addAccountDialogOpen()"><i class="icon icon-plus"></i> Добавить счет</button></h3>
+  <hr>
+
+  <p ng-show="!accounts.length">Вы еще не добавили ни одного счета</p>
+
+  <ul class="nav nav-tabs nav-stacked" ng-repeat="account in accounts" ng-show="accounts.length">
+    <li class="active">
+      <a href="#"><span class="label pull-right" ng-class="{ 'label-success': account.currentValue > 0, 'label-important': account.currentValue < 0 }">{{account.currentValue | accounting: account.CurrencyId:currency }}</span> {{account.name}}</a>
+    </li>
+  </ul>
+
+  <div modal="addAccountDialog" class="modal">
+    <div class="modal-header"><h3>Добавить счет</h3></div>
+    <div class="modal-body">
+      <form class="form-horizontal" name="newAccountForm" novalidate>
+        <div class="control-group" ng-class="{ error: newAccountForm.name.$invalid }">
+          <label class="control-label">Название *</label>
+          <div class="controls">
+            <input type="text" placeholder="название счета" name="name" ng-model="newAccount.name" required>
+            <span ng-show="newAccountForm.name.$error.required" class="help-inline">Обязательно для заполнения</span>
+          </div>
+        </div>
+
+        <div class="control-group" ng-class="{ error: newAccountForm.startValue.$invalid }">
+          <label class="control-label">Текущий остаток *</label>
+          <div class="controls">
+            <input type="text" placeholder="остаток" name="startValue" ng-model="newAccount.startValue" smart-float required> <span>{{currency[newAccount.currency].titleShort}}</span>
+            <span ng-show="newAccountForm.startValue.$error.float" class="help-inline">Поле может содержать только цифры</span>
+            <span ng-show="newAccountForm.startValue.$error.required" class="help-inline">Обязательно для заполнения</span>
+          </div>
+        </div>
+
+        <div class="control-group" ng-class="{ error: newAccountForm.currency.$invalid }">
+          <label class="control-label">Валюта *</label>
+          <div class="controls">
+            <select ui-select2 ng-model="newAccount.currency" name="currency" data-placeholder="Выберите валюту счета" required>
+              <option value=""></option>
+              <option ng-repeat="cur in currency" value="{{$index}}">{{cur.title}} ({{cur.titleShort}})</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="alert alert-info">Поля отмеченные звездочкой обязательны для заполнения.</div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-success" ng-click="addAccountDialogSave()" ng-disabled="newAccountForm.$invalid">Сохранить</button>
+      <button class="btn btn-warning cancel" ng-click="addAccountDialogClose()">Отмена</button>
+    </div>
+  </div>
+</div>
+
+<div class="span4">
+  <h3>Доходы <button class="btn btn-success" ng-class="{ disabled: !$parent.accounts.length }"><i class="icon icon-plus"></i> Внести доход</button></h3>
+  <hr>
+</div>

@@ -1,3 +1,5 @@
+Error.stackTraceLimit = Infinity;
+
 var cluster = require('cluster'),
 	http = require('http'),
 	numCPUs = require('os').cpus().length,
@@ -7,6 +9,8 @@ var cluster = require('cluster'),
 	express = require('express'),
 	program = require('commander'),
 	Log = require('log');
+
+require('express-namespace');
 
 var app = express();
 

@@ -37,6 +37,12 @@ module.exports = function (grunt) {
         files: ['test/spec/{,*/}*.coffee'],
         tasks: ['coffee:test']
       },
+      stylus: {
+        files: [
+          'app/stylus/**/*.styl'
+        ],
+        tasks: ['stylus']
+      },
       livereload: {
         options: {
           livereload: LIVERELOAD_PORT
@@ -93,6 +99,9 @@ module.exports = function (grunt) {
     },
     clean: {
       dist: {
+        options: {
+          force: true
+        },
         files: [{
           dot: true,
           src: [
@@ -131,6 +140,18 @@ module.exports = function (grunt) {
           dest: '.tmp/spec',
           ext: '.js'
         }]
+      }
+    },
+
+    stylus: {
+      compile: {
+        options: {
+          compress: true,
+          paths: ['node_modules/grunt-contrib-stylus/node_modules']
+        },
+        files: {
+          'app/styles/main.css': ['app/stylus/*.styl']
+        }
       }
     },
     // not used since Uglify task does concat,
@@ -230,7 +251,7 @@ module.exports = function (grunt) {
             '.htaccess',
             'bower_components/**/*',
             'images/{,*/}*.{gif,webp}',
-            'styles/fonts/*'
+            'font/*'
           ]
         }, {
           expand: true,
@@ -295,6 +316,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'stylus',
       'concurrent:server',
       'connect:livereload',
       'open',
@@ -311,6 +333,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'stylus',
     'useminPrepare',
     'concurrent:dist',
     'concat',

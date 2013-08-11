@@ -1,0 +1,38 @@
+<div class="row-fluid" ng-controller="UserCtrl">
+  <div class="navbar navbar-fixed-top" id="top-navbar">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <a ng-href="#{{ $state.href('parent.operations') }}" class="brand">Moneep</a>
+
+        <ul class="nav navbar-nav">
+          <li ng-class="{ active: $state.includes('parent.operations') }"><a ng-href="#{{ $state.href('parent.operations') }}">Операции</a></li>
+          <li ng-class="{ active: $state.includes('parent.plan') }"><a ng-href="#{{ $state.href('parent.plan') }}">Бюджет</a></li>
+          <li ng-class="{ active: $state.includes('parent.reports') }"><a ng-href="#{{ $state.href('parent.reports') }}">Отчеты</a></li>
+          <li ng-class="{ active: $state.includes('parent.categories') }"><a ng-href="#{{ $state.href('parent.categories') }}">Категории</a></li>
+          <li ng-class="{ active: $state.includes('parent.places') }"><a ng-href="#{{ $state.href('parent.places') }}">Места</a></li>
+        </ul>
+
+        <p class="navbar-text pull-right"><i class="icon icon-user"></i> <span ng-bind="user.name"></span> (<a href="/logout">Выход</a>)</p>
+
+        <p class="navbar-text pull-right arrears" ng-show="arrears.length">
+          <span>Долги</span>
+          <span ng-repeat="byCurrency in arrears">
+            <span class="label label-important">{{byCurrency.total | accounting: byCurrency.CurrencyId:currency }}</span>
+          </span>
+        </p>
+
+        <p class="navbar-text pull-right instock" ng-show="instock.length">
+          <span>В наличии</span>
+          <span ng-repeat="byCurrency in instock">
+            <span class="label label-success">{{byCurrency.total | accounting: byCurrency.CurrencyId:currency }}</span>
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row-fluid section" ng-class="$state.current.name | stateClass" ui-view></div>
+</div>
+
