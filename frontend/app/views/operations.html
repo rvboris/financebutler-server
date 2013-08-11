@@ -1,19 +1,31 @@
-<div class="span4">
-  <h3>Расходы <button class="btn btn-danger" ng-class="{ disabled: !$parent.accounts.length }"><i class="icon icon-plus"></i> Внести расход</button></h3>
-  <hr>
+<div class="span4" ng-controller="OperationsCtrl">
+  <h3>Расходы <button class="btn btn-danger" ng-class="{ disabled: !accounts.length }"><i class="icon icon-plus"></i> Внести расход</button></h3>
 </div>
 
 <div class="span4" ng-controller="AccountCtrl">
   <h3>Счета <button class="btn btn-primary" ng-click="addAccountDialogOpen()"><i class="icon icon-plus"></i> Добавить счет</button></h3>
-  <hr>
 
   <p ng-show="!accounts.length">Вы еще не добавили ни одного счета</p>
 
-  <ul class="nav nav-tabs nav-stacked" ng-repeat="account in accounts" ng-show="accounts.length">
-    <li class="active">
-      <a href="#"><span class="label pull-right" ng-class="{ 'label-success': account.currentValue > 0, 'label-important': account.currentValue < 0 }">{{account.currentValue | accounting: account.CurrencyId:currency }}</span> {{account.name}}</a>
-    </li>
-  </ul>
+  <table class="table table-bordered" ng-show="accounts.length">
+    <thead>
+      <tr>
+        <th>Название</th>
+        <th>Остаток</th>
+        <th>Действия</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="account in accounts">
+        <td ng-class="{ 'text-error': account.currentValue < 0 }">{{account.name}}</td>
+        <td ng-class="{ 'text-error': account.currentValue < 0 }">{{account.currentValue | accounting: account.CurrencyId:currency }}</td>
+        <td class="text-center">
+          <button type="button" class="btn btn-info btn-small"><i class="icon icon-edit"></i></button>
+          <button type="button" class="btn btn-danger btn-small"><i class="icon icon-remove"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
   <div modal="addAccountDialog" class="modal">
     <div class="modal-header"><h3>Добавить счет</h3></div>
@@ -56,7 +68,6 @@
   </div>
 </div>
 
-<div class="span4">
-  <h3>Доходы <button class="btn btn-success" ng-class="{ disabled: !$parent.accounts.length }"><i class="icon icon-plus"></i> Внести доход</button></h3>
-  <hr>
+<div class="span4" ng-controller="OperationsCtrl">
+  <h3>Доходы <button class="btn btn-success" ng-class="{ disabled: !accounts.length }"><i class="icon icon-plus"></i> Внести доход</button></h3>
 </div>

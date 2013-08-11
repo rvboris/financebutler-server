@@ -2,7 +2,7 @@ angular.module('controllers', ['restangular', 'ui.bootstrap.modal', 'ui.bootstra
 	.controller('UserCtrl', ['$rootScope', '$scope', '$log', 'Restangular', function($rootScope, $scope, $log, Restangular) {
 		$scope.instock = [];
 		$scope.arrears = [];
-		
+
 		$scope.$on('accountUpdate', function(event, args) {
 			_.each(args, function(val, key) {
 				if (key === 'instock') {
@@ -110,8 +110,17 @@ angular.module('controllers', ['restangular', 'ui.bootstrap.modal', 'ui.bootstra
 				}
 			});
 
-			$scope.$emit('account', { instock: instock, arrears: arrears });
+			$scope.$emit('account', { accounts: accounts, instock: instock, arrears: arrears });
 		});
+	}])
+	.controller('OperationsCtrl', ['$scope', 'Restangular', function($scope, Restangular) {
+		$scope.$on('accountUpdate', function(event, args) {
+			_.each(args, function(val, key) {
+				if (key === 'accounts') {
+					$scope[key] = val;
+				}
+			});
+    	});
 	}])
 	.controller('ErrorCtrl', ['$scope', '$state', function($scope, $state) {
 		$scope.errorCode = $state.params.code;
