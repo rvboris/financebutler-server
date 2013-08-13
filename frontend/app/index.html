@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- build:css({.tmp,app}) styles/main.css -->
-    <link rel="stylesheet" href="bower_components/flatstrap/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="styles/bootstrap.css">
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="bower_components/select2/select2.css">
 
@@ -28,7 +28,7 @@
       <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
-    <div class="container-fluid" ui-view></div>
+    <div class="container" ui-view></div>
     
     {{#if apiKey}}
         <script>
@@ -40,13 +40,7 @@
     <script src="bower_components/angular/angular.js"></script>
     
     <!-- build:js scripts/plugins.js -->
-    <script src="bower_components/bootstrap-ui/src/transition/transition.js"></script>
-    <script src="bower_components/bootstrap-ui/src/dialog/dialog.js"></script>
-    <script src="bower_components/bootstrap-ui/src/modal/modal.js"></script>
-    <script src="bower_components/bootstrap-ui/src/position/position.js"></script>
-    <script src="bower_components/bootstrap-ui/src/tooltip/tooltip.js"></script>
-    <script src="bower_components/bootstrap-ui/src/popover/popover.js"></script>
-
+    <script src="scripts/bootstrap-ui.js"></script>
     <script src="bower_components/select2/select2.js"></script>
     <script src="bower_components/select2/select2_locale_ru.js"></script>
     <script src="bower_components/angular-ui-select2/src/select2.js"></script>

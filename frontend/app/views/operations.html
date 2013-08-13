@@ -1,73 +1,101 @@
-<div class="span4" ng-controller="OperationsCtrl">
-  <h3>Расходы <button class="btn btn-danger" ng-class="{ disabled: !accounts.length }"><i class="icon icon-plus"></i> Внести расход</button></h3>
+<div class="col-lg-4" ng-controller="OperationsCtrl">
+  <h3>Расходы <button class="btn btn-small btn-danger" ng-class="{ disabled: !accounts.length }"><i class="icon icon-plus"></i> Внести расход</button></h3>
 </div>
 
-<div class="span4" ng-controller="AccountCtrl">
-  <h3>Счета <button class="btn btn-primary" ng-click="addAccountDialogOpen()"><i class="icon icon-plus"></i> Добавить счет</button></h3>
+<div class="col-lg-4" ng-controller="AccountCtrl">
+  <h3>Счета <button class="btn btn-small btn-primary" ng-click="addAccountDialogOpen()"><i class="icon icon-plus"></i> Добавить счет</button></h3>
 
-  <p ng-show="!accounts.length">Вы еще не добавили ни одного счета</p>
+  <div class="panel">
+    <p ng-show="!accounts.length">Вы еще не добавили ни одного счета</p>
 
-  <table class="table table-bordered" ng-show="accounts.length">
-    <thead>
-      <tr>
-        <th>Название</th>
-        <th>Остаток</th>
-        <th>Действия</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="account in accounts">
-        <td ng-class="{ 'text-error': account.currentValue < 0 }">{{account.name}}</td>
-        <td ng-class="{ 'text-error': account.currentValue < 0 }">{{account.currentValue | accounting: account.CurrencyId:currency }}</td>
-        <td class="text-center">
-          <button type="button" class="btn btn-info btn-small"><i class="icon icon-edit"></i></button>
-          <button type="button" class="btn btn-danger btn-small"><i class="icon icon-remove"></i></button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <table class="table accounts" ng-show="accounts.length">
+      <thead>
+        <tr>
+          <th>Название</th>
+          <th>Остаток</th>
+          <th>Действия</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="account in accounts">
+          <td ng-class="{ 'text-danger': account.currentValue < 0 }">{{account.name}}</td>
+          <td ng-class="{ 'text-danger': account.currentValue < 0 }">{{account.currentValue | accounting: account.CurrencyId:currency }}</td>
+          <td class="text-center">
+            <button type="button" class="btn btn-info btn-small"><i class="icon icon-edit"></i></button>
+            <button type="button" class="btn btn-danger btn-small"><i class="icon icon-remove"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-  <div modal="addAccountDialog" class="modal">
-    <div class="modal-header"><h3>Добавить счет</h3></div>
-    <div class="modal-body">
-      <form class="form-horizontal" name="newAccountForm" novalidate>
-        <div class="control-group" ng-class="{ error: newAccountForm.name.$invalid }">
-          <label class="control-label">Название *</label>
-          <div class="controls">
-            <input type="text" placeholder="название счета" name="name" ng-model="newAccount.name" required>
-            <span ng-show="newAccountForm.name.$error.required" class="help-inline">Обязательно для заполнения</span>
-          </div>
+  <div class="modal fade" modal="addAccountDialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="addAccountDialogClose()">&times;</button>
+          <h4 class="modal-title">Добавить счет</h4>
         </div>
 
-        <div class="control-group" ng-class="{ error: newAccountForm.startValue.$invalid }">
-          <label class="control-label">Текущий остаток *</label>
-          <div class="controls">
-            <input type="text" placeholder="остаток" name="startValue" ng-model="newAccount.startValue" smart-float required> <span>{{currency[newAccount.currency].titleShort}}</span>
-            <span ng-show="newAccountForm.startValue.$error.float" class="help-inline">Поле может содержать только цифры</span>
-            <span ng-show="newAccountForm.startValue.$error.required" class="help-inline">Обязательно для заполнения</span>
-          </div>
+        <div class="modal-body">
+          <form class="form-horizontal add-account-form" name="newAccountForm" novalidate>
+
+            <div class="form-group" ng-class="{ 'has-error': newAccountForm.name.$invalid, 'has-success': !newAccountForm.name.$invalid }">
+              <div class="row">
+                <label class="col-lg-4 control-label">Название *</label>
+                <div class="col-lg-6">
+                  <input type="text" class="form-control" placeholder="название счета" name="name" ng-model="newAccount.name" required>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-8 col-offset-4">
+                  <span ng-show="newAccountForm.name.$error.required" class="help-block">Обязательно для заполнения</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group" ng-class="{ 'has-error': newAccountForm.startValue.$invalid, 'has-success': !newAccountForm.startValue.$invalid }">
+              <div class="row">
+                <label class="col-lg-4 control-label">Текущий остаток *</label>
+                <div class="col-lg-6">
+                  <input type="text" class="form-control" placeholder="остаток" name="startValue" ng-model="newAccount.startValue" smart-float required>
+                </div>
+                <div class="col-lg-2 currency-title">{{currency[newAccount.currency].titleShort}}</div>
+              </div>
+              <div class="row">
+                <div class="col-lg-8 col-offset-4">
+                  <span ng-show="newAccountForm.startValue.$error.float" class="help-block">Поле может содержать только цифры</span>
+                  <span ng-show="newAccountForm.startValue.$error.required" class="help-block">Обязательно для заполнения</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group" ng-class="{ 'has-error': newAccountForm.currency.$invalid, 'has-success': !newAccountForm.currency.$invalid }">
+              <div class="row">
+                <label class="col-lg-4 control-label">Валюта *</label>
+                <div class="col-lg-8">
+                  <select ui-select2 ng-model="newAccount.currency" name="currency" data-placeholder="Выберите валюту счета" required>
+                    <option value=""></option>
+                    <option ng-repeat="cur in currency" value="{{$index}}">{{cur.title}} ({{cur.titleShort}})</option>
+                  </select>
+                </div>
+              </div> 
+            </div>
+          </form>
+
+          <div class="alert alert-info">Поля отмеченные звездочкой обязательны для заполнения.</div>
         </div>
 
-        <div class="control-group" ng-class="{ error: newAccountForm.currency.$invalid }">
-          <label class="control-label">Валюта *</label>
-          <div class="controls">
-            <select ui-select2 ng-model="newAccount.currency" name="currency" data-placeholder="Выберите валюту счета" required>
-              <option value=""></option>
-              <option ng-repeat="cur in currency" value="{{$index}}">{{cur.title}} ({{cur.titleShort}})</option>
-            </select>
-          </div>
+        <div class="modal-footer">
+          <button class="btn btn-success" ng-click="addAccountDialogSave()" ng-disabled="newAccountForm.$invalid"><i class="icon icon-ok"></i> Сохранить</button>
+          <button class="btn btn-warning cancel" ng-click="addAccountDialogClose()"><i class="icon icon-remove"></i> Отмена</button>
         </div>
-
-        <div class="alert alert-info">Поля отмеченные звездочкой обязательны для заполнения.</div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-success" ng-click="addAccountDialogSave()" ng-disabled="newAccountForm.$invalid">Сохранить</button>
-      <button class="btn btn-warning cancel" ng-click="addAccountDialogClose()">Отмена</button>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="span4" ng-controller="OperationsCtrl">
-  <h3>Доходы <button class="btn btn-success" ng-class="{ disabled: !accounts.length }"><i class="icon icon-plus"></i> Внести доход</button></h3>
+<div class="col-lg-4" ng-controller="OperationsCtrl">
+  <h3>Доходы <button class="btn btn-small btn-success" ng-class="{ disabled: !accounts.length }"><i class="icon icon-plus"></i> Внести доход</button></h3>
 </div>

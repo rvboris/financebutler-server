@@ -1,8 +1,8 @@
-<div class="row-fluid" ng-controller="UserCtrl">
+<div class="row" ng-controller="UserCtrl">
   <div class="navbar navbar-fixed-top" id="top-navbar">
     <div class="navbar-inner">
-      <div class="container-fluid">
-        <a ng-href="#{{ $state.href('parent.operations') }}" class="brand">Moneep</a>
+      <div class="container">
+        <a ng-href="#{{ $state.href('parent.operations') }}" class="navbar-brand">Moneep</a>
 
         <ul class="nav navbar-nav">
           <li ng-class="{ active: $state.includes('parent.operations') }"><a ng-href="#{{ $state.href('parent.operations') }}">Операции</a></li>
@@ -32,7 +32,6 @@
   </div>
 </div>
 
-<div class="container-fluid">
-  <div class="row-fluid section" ng-class="$state.current.name | stateClass" ui-view></div>
+<div class="container">
+  <div class="row section" ng-class="$state.current.name | stateClass" ui-view></div>
 </div>
-

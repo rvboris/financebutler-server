@@ -1,4 +1,8 @@
 body{padding:40px}
 #top-navbar .arrears,#top-navbar .instock{margin-right:10px}
+[ngcloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak{display:none}
 
-.parent-operations .panel-heading .btn{margin:-5px -10px 0 0}
+.add-account-form .currency-title{line-height:38px}
+.add-account-form .select2-container .select2-choice,.add-account-form .select2-container .select2-choice > .select2-chosen,.add-account-form .select2-search,.add-account-form .select2-search input,.add-account-form .select2-container-multi .select2-choices{height:38px !important;line-height:38px !important}
+.add-account-form .select2-container .select2-choice,.add-account-form .select2-container.select2-drop-above .select2-choice,.add-account-form .select2-drop,.add-account-form .select2-drop.select2-drop-above,.add-account-form .select2-container .select2-choice .select2-arrow,.add-account-form .select2-search input,.add-account-form .select2-dropdown-open .select2-choice,.add-account-form .select2-container-multi .select2-choices .select2-search-choice{border-radius:0 !important}
+.parent-operations table.accounts tbody td{line-height:30px}
