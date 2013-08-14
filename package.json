@@ -1,5 +1,5 @@
 {
-  "name": "moneep",
+  "name": "financebutler",
   "description": "Simple finance manager",
   "version": "0.0.1",
   "keywords": [
@@ -16,7 +16,7 @@
   "repositories": [
     {
       "type": "git",
-      "url": "https://bitbucket.org/rvboris/moneep"
+      "url": "https://bitbucket.org/rvboris/financebutler"
     }
   ],
   "licenses": [
@@ -25,7 +25,7 @@
       "url": "http://www.tldrlegal.com/license/CC-NC"
     }
   ],
-  "homepage": "http://moneep.com",
+  "homepage": "http://financebutler.ru",
   "dependencies": {
     "express": "~3.3.4",
     "authom": "~0.4.16",

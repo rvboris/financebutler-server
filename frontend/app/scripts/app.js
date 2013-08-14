@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('moneepApp', ['controllers', 'filters', 'directives', 'ui.state'])
+angular.module('financeButlerApp', ['controllers', 'filters', 'directives', 'ui.state'])
 	.config(function($stateProvider, $urlRouterProvider) {
 		$urlRouterProvider.otherwise('/').when('/home', '/');
 
