@@ -1,5 +1,9 @@
+syntax: glob
 node_modules
 bower_components
-config.js
+config.json
+.ftppass
 public/
 tmp/
+deploy/*.pem
+deploy/*.zip

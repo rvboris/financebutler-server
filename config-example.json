@@ -1,0 +1,71 @@
+{
+	"secret": "",
+	"db": {
+		"development": {
+			"name": "",
+			"username": "",
+			"password": "",
+			"options": {
+				"host": "localhost",
+				"port": "5432",
+				"dialect": "postgres",
+				"omitNull": "true",
+				"logging": "true"
+			}
+		},
+		"production": {
+			"name": "",
+			"username": "",
+			"password": "",
+			"options": {
+				"host": "localhost",
+				"port": "5432",
+				"dialect": "postgres",
+				"omitNull": "true",
+				"logging": "false"
+			}
+		}
+	},
+	"oauth": {
+		"development": {
+			"google": {
+				"id": "",
+				"secret": ""
+			},
+			"twitter": {
+				"id": "",
+				"secret": ""
+			},
+			"facebook": {
+				"id": "",
+				"secret": "",
+				"fields": ["name"]
+			},
+			"vkontakte": {
+				"id": "",
+				"secret": "",
+				"fields": ["screen_name"]
+			}
+		},
+		"production": {
+			"google": {
+				"id": "",
+				"secret": ""
+			},
+			"twitter": {
+				"id": "",
+				"secret": ""
+			},
+			"facebook": {
+				"id": "",
+				"secret": "",
+				"fields": ["name"]
+			},
+			"vkontakte": {
+				"id": "",
+				"secret": "",
+				"fields": ["screen_name"]
+			}
+		}
+	}
+}

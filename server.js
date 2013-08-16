@@ -12,7 +12,7 @@ var SessionStore = require(path.join(__dirname, 'system', 'session.js'))(express
 module.exports = function(app) {
 	app.configure(function() {
 		app.set('models', new Models(app));
-		app.set('port', app.get('program').port || 3000);
+		app.set('port', app.get('program').port);
 		app.set('view engine', 'html');
 		app.engine('html', require('hbs').__express);
 
