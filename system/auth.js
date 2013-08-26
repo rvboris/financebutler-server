@@ -2,7 +2,7 @@ var authom = require('authom'),
 	uuid = require('uuid');
 
 module.exports = function(app) {
-	var oauthConfig = app.get('config').get('oauth')[app.settings.env];
+	var oauthConfig = app.get('config')['oauth'][app.get('options').oauth ? app.get('options').oauth : app.get('options').env];
 
 	var getOAuthData = function(auth) {
 		var user = {};

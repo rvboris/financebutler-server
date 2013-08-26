@@ -7,3 +7,4 @@ public/
 tmp/
 deploy/*.pem
 deploy/*.zip
+.idea

@@ -1,7 +1,7 @@
 {
   "name": "financebutler",
   "description": "Simple finance manager",
-  "version": "0.0.5",
+  "version": "0.0.25",
   "keywords": [
     "finance",
     "money"
@@ -29,11 +29,9 @@
   "dependencies": {
     "express": "~3.3.4",
     "authom": "~0.4.16",
-    "commander": "~2.0.0",
     "connect-domain": "~0.5.0",
     "fs-tools": "~0.2.10",
     "helmet": "~0.1.0",
-    "json-store": "0.0.1",
     "log": "~1.4.0",
     "pg": "~2.3.1",
     "stylus": "~0.36.0",
@@ -50,6 +48,8 @@
     "grunt-ssh": "~0.6.2",
     "grunt-bump": "0.0.11",
     "moment": "~2.1.0",
-    "grunt-contrib-compress": "~0.5.2"
+    "grunt-contrib-compress": "~0.5.2",
+    "opter": "~0.4.0",
+    "commander": "~2.0.0"
   }
 }

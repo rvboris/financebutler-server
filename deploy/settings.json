@@ -1,12 +1,12 @@
 {
 	"development": {
 		"host": "dev.financebutler.ru",
-		"username": "root",
+		"username": "deploy",
 		"root": "/srv/dev.financebutler.ru"
 	},
 	"production": {
 		"host": "financebutler.ru",
-		"username": "root",
+		"username": "deploy",
 		"root": "/srv/financebutler.ru"
 	}
 }

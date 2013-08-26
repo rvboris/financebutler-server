@@ -4,6 +4,7 @@ module.exports = function(sequelize, DataTypes) {
 		value: {
 			type: DataTypes.DECIMAL,
 			allowNull: false
-		}
+		},
+		comment: DataTypes.STRING
 	});
 };

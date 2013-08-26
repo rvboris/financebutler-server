@@ -1,9 +1,8 @@
 var Sequelize = require('sequelize'),
-	path = require('path'),
-	_ = require('lodash');
+	path = require('path');
 
 module.exports = function(app, isMaster) {
-	var config = app.get('config').get('db')[app.get('program').env];
+	var config = app.get('config')['db'][app.get('options').env];
 
 	config.options.logging = !(config.options.logging === 'false');
 
@@ -13,9 +12,23 @@ module.exports = function(app, isMaster) {
 		};
 	}
 
-	var models = ['Currency', 'Session', 'User', 'Provider', 'Account', 'Category', 'Place', 'Operation', 'Plan'];
+	if (config.name !== app.get('options').database) {
+		config.name = app.get('options').database;
+	}
 
-	this.sequelize = new Sequelize(app.get('program').dbname ? app.get('program').dbname : config.name, config.username, config.password, config.options);
+	var models = [
+		'Currency',
+		'Session',
+		'User',
+		'Provider',
+		'Account',
+		'Category',
+		'Place',
+		'Operation',
+		'Plan'
+	];
+
+	this.sequelize = new Sequelize(config.name, config.username, config.password, config.options);
 
 	Sequelize.Utils._.each(models, function(model) {
 		this[model] = this.sequelize.import(path.join(__dirname, model.charAt(0).toLowerCase() + model.slice(1)));
@@ -38,7 +51,7 @@ module.exports = function(app, isMaster) {
 	this.Provider.belongsTo(this.User, { as: 'User' });
 	this.User.hasMany(this.Provider, { as: 'Providers' });
 
-	var loadFixtures = _.bind(function() {
+	var loadFixtures = Sequelize.Utils._.bind(function() {
 		var chainer = new Sequelize.Utils.QueryChainer();
 
 		Sequelize.Utils._.each(models, function(model) {
@@ -59,7 +72,7 @@ module.exports = function(app, isMaster) {
 		});
 	}, this);
 
-	if (isMaster && app.get('program').drop) {
+	if (app.get('options').drop) {
 		this.sequelize.sync({
 			force: true
 		}).success(function() {
