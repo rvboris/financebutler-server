@@ -1,0 +1,638 @@
+{
+    "AED": {
+        "name": "Дирхам (ОАЭ)",
+        "countries": ["AE"]
+    },
+    "AFN": {
+        "name": "Афгани",
+        "countries": ["AF"]
+    },
+    "ALL": {
+        "name": "Лек",
+        "countries": ["AL"]
+    },
+    "AMD": {
+        "name": "Армянский драм",
+        "countries": ["AM"]
+    },
+    "ANG": {
+        "name": "Нидерландский антильский гульден",
+        "countries": ["CW", "SX"]
+    },
+    "AOA": {
+        "name": "Кванза",
+        "countries": ["AO"]
+    },
+    "ARS": {
+        "name": "Аргентинское песо",
+        "countries": ["AR"]
+    },
+    "AUD": {
+        "name": "Австралийский доллар",
+        "countries": ["AU", "CX", "CC", "HM", "KI", "NR", "NF", "TV"]
+    },
+    "AWG": {
+        "name": "Арубанский гульден",
+        "countries": ["AW"]
+    },
+    "AZN": {
+        "name": "Азербайджанский манат",
+        "countries": ["AZ"]
+    },
+    "BAM": {
+        "name": "Конвертируемая марка",
+        "countries": ["BA"]
+    },
+    "BBD": {
+        "name": "Барбадосский доллар",
+        "countries": ["BB"]
+    },
+    "BDT": {
+        "name": "Така",
+        "countries": ["BD"]
+    },
+    "BGN": {
+        "name": "Болгарский лев",
+        "countries": ["BG"]
+    },
+    "BHD": {
+        "name": "Бахрейнский динар",
+        "countries": ["BH"]
+    },
+    "BIF": {
+        "name": "Бурундийский франк",
+        "countries": ["BI"]
+    },
+    "BMD": {
+        "name": "Бермудский доллар",
+        "countries": ["BM"]
+    },
+    "BND": {
+        "name": "Брунейский доллар",
+        "countries": ["BN"]
+    },
+    "BOB": {
+        "name": "Боливиано",
+        "countries": ["BO"]
+    },
+    "BRL": {
+        "name": "Бразильский реал",
+        "countries": ["BR"]
+    },
+    "BSD": {
+        "name": "Багамский доллар",
+        "countries": ["BS"]
+    },
+    "BTN": {
+        "name": "Нгултрум",
+        "countries": ["BT"]
+    },
+    "BWP": {
+        "name": "Пула",
+        "countries": ["BW"]
+    },
+    "BYR": {
+        "name": "Белорусский рубль",
+        "countries": ["BY"]
+    },
+    "BZD": {
+        "name": "Белизский доллар",
+        "countries": ["BZ"]
+    },
+    "CAD": {
+        "name": "Канадский доллар",
+        "countries": ["CA"]
+    },
+    "CDF": {
+        "name": "Конголезский франк",
+        "countries": ["CD"]
+    },
+    "CHF": {
+        "name": "Швейцарский франк",
+        "countries": ["LI", "CH"]
+    },
+    "CLP": {
+        "name": "Чилийское песо",
+        "countries": ["CL"]
+    },
+    "CNY": {
+        "name": "Юань Ренминби",
+        "countries": ["CN"]
+    },
+    "COP": {
+        "name": "Колумбийское песо",
+        "countries": ["CO"]
+    },
+    "CRC": {
+        "name": "Костариканский колон",
+        "countries": ["CR"]
+    },
+    "CUC": {
+        "name": "Конвертируемые песо",
+        "countries": ["CU"]
+    },
+    "CUP": {
+        "name": "Кубинское песо",
+        "countries": ["CU"]
+    },
+    "CVE": {
+        "name": "Эскудо Кабо-Верде",
+        "countries": ["CV"]
+    },
+    "CZK": {
+        "name": "Чешская крона",
+        "countries": ["CZ"]
+    },
+    "DJF": {
+        "name": "Франк Джибути",
+        "countries": ["DJ"]
+    },
+    "DKK": {
+        "name": "Датская крона",
+        "countries": ["DK", "FO", "GL"]
+    },
+    "DOP": {
+        "name": "Доминиканское песо",
+        "countries": ["DO"]
+    },
+    "DZD": {
+        "name": "Алжирский динар",
+        "countries": ["DZ"]
+    },
+    "EGP": {
+        "name": "Египетский фунт",
+        "countries": ["EG"]
+    },
+    "ERN": {
+        "name": "Накфа",
+        "countries": ["ER"]
+    },
+    "ETB": {
+        "name": "Эфиопский быр",
+        "countries": ["ET"]
+    },
+    "EUR": {
+        "name": "Евро",
+        "countries": ["AX", "AD", "AT", "BE", "CY", "EE", "FI", "FR", "GF", "TF", "DE", "GR", "GP", "IE", "IT", "LU", "MT", "MQ", "YT", "MC", "ME", "NL", "PT", "RE", "BL", "MF", "PM", "SM", "SK", "SI", "ES", "VA"]
+    },
+    "FJD": {
+        "name": "Доллар Фиджи",
+        "countries": ["FJ"]
+    },
+    "FKP": {
+        "name": "Фунт Фолклендских островов",
+        "countries": ["FK"]
+    },
+    "GBP": {
+        "name": "Фунт стерлингов",
+        "countries": ["GG", "IM", "JE", "GB"]
+    },
+    "GEL": {
+        "name": "Лари",
+        "countries": ["GE"]
+    },
+    "GHS": {
+        "name": "Седи",
+        "countries": ["GH"]
+    },
+    "GIP": {
+        "name": "Гибралтарский фунт",
+        "countries": ["GI"]
+    },
+    "GMD": {
+        "name": "Даласи",
+        "countries": ["GM"]
+    },
+    "GNF": {
+        "name": "Гвинейский франк",
+        "countries": ["GN"]
+    },
+    "GTQ": {
+        "name": "Кетсаль",
+        "countries": ["GT"]
+    },
+    "GYD": {
+        "name": "Гайанский доллар",
+        "countries": ["GY"]
+    },
+    "HKD": {
+        "name": "Гонконгский доллар",
+        "countries": ["HK"]
+    },
+    "HNL": {
+        "name": "Лемпира",
+        "countries": ["HN"]
+    },
+    "HRK": {
+        "name": "Хорватская куна",
+        "countries": ["HR"]
+    },
+    "HTG": {
+        "name": "Гурд",
+        "countries": ["HT"]
+    },
+    "HUF": {
+        "name": "Форинт",
+        "countries": ["HU"]
+    },
+    "IDR": {
+        "name": "Рупия",
+        "countries": ["ID"]
+    },
+    "ILS": {
+        "name": "Новый израильский шекель",
+        "countries": ["IL"]
+    },
+    "INR": {
+        "name": "Индийская рупия",
+        "countries": ["BT", "IN"]
+    },
+    "IQD": {
+        "name": "Иракский динар",
+        "countries": ["IQ"]
+    },
+    "IRR": {
+        "name": "Иранский риал",
+        "countries": ["IR"]
+    },
+    "ISK": {
+        "name": "Исландская крона",
+        "countries": ["IS"]
+    },
+    "JMD": {
+        "name": "Ямайский доллар",
+        "countries": ["JM"]
+    },
+    "JOD": {
+        "name": "Иорданский динар",
+        "countries": ["JO"]
+    },
+    "JPY": {
+        "name": "Йена",
+        "countries": ["JP"]
+    },
+    "KES": {
+        "name": "Кенийский шиллинг",
+        "countries": ["KE"]
+    },
+    "KGS": {
+        "name": "Сом",
+        "countries": ["KG"]
+    },
+    "KHR": {
+        "name": "Риель",
+        "countries": ["KH"]
+    },
+    "KMF": {
+        "name": "Франк Комор",
+        "countries": ["KM"]
+    },
+    "KPW": {
+        "name": "Северо-корейская вона",
+        "countries": ["KP"]
+    },
+    "KRW": {
+        "name": "Вона",
+        "countries": ["KR"]
+    },
+    "KWD": {
+        "name": "Кувейтский динар",
+        "countries": ["KW"]
+    },
+    "KYD": {
+        "name": "Доллар Островов Кайман",
+        "countries": ["KY"]
+    },
+    "KZT": {
+        "name": "Тенге",
+        "countries": ["KZ"]
+    },
+    "LAK": {
+        "name": "Кип",
+        "countries": ["LA"]
+    },
+    "LBP": {
+        "name": "Ливанский фунт",
+        "countries": ["LB"]
+    },
+    "LKR": {
+        "name": "Шри-Ланкийская рупия",
+        "countries": ["LK"]
+    },
+    "LRD": {
+        "name": "Либерийский доллар",
+        "countries": ["LR"]
+    },
+    "LSL": {
+        "name": "Лоти",
+        "countries": ["LS"]
+    },
+    "LTL": {
+        "name": "Литовский лит",
+        "countries": ["LT"]
+    },
+    "LVL": {
+        "name": "Латвийский лат",
+        "countries": ["LV"]
+    },
+    "LYD": {
+        "name": "Ливийский динар",
+        "countries": ["LY"]
+    },
+    "MAD": {
+        "name": "Марокканский дирхам",
+        "countries": ["MA", "EH"]
+    },
+    "MDL": {
+        "name": "Молдавский лей",
+        "countries": ["MD"]
+    },
+    "MGA": {
+        "name": "Ариари",
+        "countries": ["MG"]
+    },
+    "MKD": {
+        "name": "Динар",
+        "countries": ["MK"]
+    },
+    "MMK": {
+        "name": "Кьят",
+        "countries": ["MM"]
+    },
+    "MNT": {
+        "name": "Тугрик",
+        "countries": ["MN"]
+    },
+    "MOP": {
+        "name": "Патака",
+        "countries": ["MO"]
+    },
+    "MRO": {
+        "name": "Угия",
+        "countries": ["MR"]
+    },
+    "MUR": {
+        "name": "Маврикийская рупия",
+        "countries": ["MU"]
+    },
+    "MVR": {
+        "name": "Руфия",
+        "countries": ["MV"]
+    },
+    "MWK": {
+        "name": "Квача",
+        "countries": ["MW"]
+    },
+    "MXN": {
+        "name": "Мексиканское песо",
+        "countries": ["MX"]
+    },
+    "MYR": {
+        "name": "Малайзийский ринггит",
+        "countries": ["MY"]
+    },
+    "MZN": {
+        "name": "Мозамбикский метикал",
+        "countries": ["MZ"]
+    },
+    "NAD": {
+        "name": "Доллар Намибии",
+        "countries": ["NA"]
+    },
+    "NGN": {
+        "name": "Найра",
+        "countries": ["NG"]
+    },
+    "NIO": {
+        "name": "Золотая кордоба",
+        "countries": ["NI"]
+    },
+    "NOK": {
+        "name": "Норвежская крона",
+        "countries": ["BV", "NO", "SJ"]
+    },
+    "NPR": {
+        "name": "Непальская рупия",
+        "countries": ["NP"]
+    },
+    "NZD": {
+        "name": "Новозеландский доллар",
+        "countries": ["CK", "NZ", "NU", "PN", "TK"]
+    },
+    "OMR": {
+        "name": "Оманский риал",
+        "countries": ["OM"]
+    },
+    "PAB": {
+        "name": "Бальбоа",
+        "countries": ["PA"]
+    },
+    "PEN": {
+        "name": "Новый соль",
+        "countries": ["PE"]
+    },
+    "PGK": {
+        "name": "Кина",
+        "countries": ["PG"]
+    },
+    "PHP": {
+        "name": "Филиппинское песо",
+        "countries": ["PH"]
+    },
+    "PKR": {
+        "name": "Пакистанская рупия",
+        "countries": ["PK"]
+    },
+    "PLN": {
+        "name": "Злотый",
+        "countries": ["PL"]
+    },
+    "PYG": {
+        "name": "Гуарани",
+        "countries": ["PY"]
+    },
+    "QAR": {
+        "name": "Катарский риал",
+        "countries": ["QA"]
+    },
+    "RON": {
+        "name": "Лей",
+        "countries": ["RO"]
+    },
+    "RSD": {
+        "name": "Сербский динар",
+        "countries": ["RS"]
+    },
+    "RUB": {
+        "name": "Российский рубль",
+        "countries": ["RU"]
+    },
+    "RWF": {
+        "name": "Франк Руанды",
+        "countries": ["RW"]
+    },
+    "SAR": {
+        "name": "Саудовский риял",
+        "countries": ["SA"]
+    },
+    "SBD": {
+        "name": "Доллар Соломоновых Островов",
+        "countries": ["SB"]
+    },
+    "SCR": {
+        "name": "Сейшельская рупия",
+        "countries": ["SC"]
+    },
+    "SDG": {
+        "name": "Суданский динар",
+        "countries": ["SD"]
+    },
+    "SEK": {
+        "name": "Шведская крона",
+        "countries": ["SE"]
+    },
+    "SGD": {
+        "name": "Сингапурский доллар",
+        "countries": ["SG"]
+    },
+    "SHP": {
+        "name": "Фунт Святой Елены",
+        "countries": ["SH"]
+    },
+    "SLL": {
+        "name": "Леоне",
+        "countries": ["SL"]
+    },
+    "SOS": {
+        "name": "Сомалийский шиллинг",
+        "countries": ["SO"]
+    },
+    "SRD": {
+        "name": "Суринамский доллар",
+        "countries": ["SR"]
+    },
+    "SSP": {
+        "name": "Южно Суданский фунт",
+        "countries": ["SS"]
+    },
+    "STD": {
+        "name": "Добра",
+        "countries": ["ST"]
+    },
+    "SVC": {
+        "name": "Сальвадорский колон",
+        "countries": ["SV"]
+    },
+    "SYP": {
+        "name": "Сирийский фунт",
+        "countries": ["SY"]
+    },
+    "SZL": {
+        "name": "Лилангени",
+        "countries": ["SZ"]
+    },
+    "THB": {
+        "name": "Бат",
+        "countries": ["TH"]
+    },
+    "TJS": {
+        "name": "Сомони",
+        "countries": ["TJ"]
+    },
+    "TMT": {
+        "name": "Манат",
+        "countries": ["TM"]
+    },
+    "TND": {
+        "name": "Тунисский динар",
+        "countries": ["TN"]
+    },
+    "TOP": {
+        "name": "Паанга",
+        "countries": ["TO"]
+    },
+    "TRY": {
+        "name": "Турецкая лира",
+        "countries": ["TR"]
+    },
+    "TTD": {
+        "name": "Доллар Тринидада и Тобаго",
+        "countries": ["TT"]
+    },
+    "TWD": {
+        "name": "Новый тайваньский доллар",
+        "countries": ["TW"]
+    },
+    "TZS": {
+        "name": "Танзанийский шиллинг",
+        "countries": ["TZ"]
+    },
+    "UAH": {
+        "name": "Гривна",
+        "countries": ["UA"]
+    },
+    "UGX": {
+        "name": "Угандийский шиллинг",
+        "countries": ["UG"]
+    },
+    "USD": {
+        "name": "Доллар США",
+        "countries": ["AS", "BQ", "IO", "EC", "SV", "GU", "HT", "MH", "FM", "MP", "PW", "PA", "PR", "TL", "TC", "US", "UM", "VG", "VI"]
+    },
+    "UYU": {
+        "name": "Уругвайское песо",
+        "countries": ["UY"]
+    },
+    "UZS": {
+        "name": "Узбекский сум",
+        "countries": ["UZ"]
+    },
+    "VEF": {
+        "name": "Боливар",
+        "countries": ["VE"]
+    },
+    "VND": {
+        "name": "Донг",
+        "countries": ["VN"]
+    },
+    "VUV": {
+        "name": "Вату",
+        "countries": ["VU"]
+    },
+    "WST": {
+        "name": "Тала",
+        "countries": ["WS"]
+    },
+    "XAF": {
+        "name": "Франк КФА ВЕАС",
+        "countries": ["CM", "CF", "TD", "CG", "GQ", "GA"]
+    },
+    "XCD": {
+        "name": "Восточно-карибский доллар",
+        "countries": ["AI", "AG", "DM", "GD", "MS", "KN", "LC", "VC"]
+    },
+    "XOF": {
+        "name": "Франк КФА ВСЕАО",
+        "countries": ["BJ", "BF", "CI", "GW", "ML", "NE", "SN", "TG"]
+    },
+    "XPF": {
+        "name": "Франк КФП",
+        "countries": ["PF", "NC", "WF"]
+    },
+    "YER": {
+        "name": "Йеменский риал",
+        "countries": ["YE"]
+    },
+    "ZAR": {
+        "name": "Рэнд",
+        "countries": ["LS", "NA", "ZA"]
+    },
+    "ZMW": {
+        "name": "Замбийская квача",
+        "countries": ["ZM"]
+    },
+    "ZWL": {
+        "name": "Доллар Зимбабве",
+        "countries": ["ZW"]
+    }
+}

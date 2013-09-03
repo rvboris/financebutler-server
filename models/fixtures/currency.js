@@ -1,6 +1,19 @@
-var fs = require('fs'),
-	path = require('path');
+var path = require('path');
 
-module.exports = function(models) {
-	return models.Currency.bulkCreate(JSON.parse(fs.readFileSync(path.join(__dirname, 'currency.json'))));
+module.exports = function(models, config) {
+    var data = [];
+
+    config.locales.forEach(function(locale) {
+        var currency = require(path.join(__dirname, locale, 'currency.json'));
+
+        for (var code in currency) {
+            data.push({
+                name: currency[code].name,
+                code: code,
+                locale: locale
+            });
+        }
+    });
+
+    return models.Currency.bulkCreate(data);
 };

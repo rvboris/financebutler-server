@@ -1,8 +1,8 @@
 var moment = require('moment');
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
-    var version = function() {
+    var version = function () {
         return grunt.file.readJSON('package.json').version || '1.0.0';
     };
 
@@ -35,8 +35,8 @@ module.exports = function(grunt) {
         hub: {
             build: {
                 src: ['frontend/Gruntfile.js'],
-                tasks: ['build'],
-            },
+                tasks: ['build']
+            }
         },
 
         compress: {
@@ -44,18 +44,20 @@ module.exports = function(grunt) {
                 options: {
                     archive: 'deploy/<%= deploy.' + env + '.host %>-' + version() + '.zip'
                 },
-                files: [{
-                    src: [
-                        'public/**/*',
-                        'models/**/*',
-                        'routes/**/*',
-                        'system/**/*',
-                        './app.js',
-                        './server.js',
-                        './*.json'
-                    ],
-                    dest: '/'
-                }]
+                files: [
+                    {
+                        src: [
+                            'public/**/*',
+                            'models/**/*',
+                            'routes/**/*',
+                            'system/**/*',
+                            './app.js',
+                            './app-cli.js',
+                            './*.json'
+                        ],
+                        dest: '/'
+                    }
+                ]
             }
         },
 
