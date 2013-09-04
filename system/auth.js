@@ -1,34 +1,66 @@
 var authom = require('authom'),
-    uuid = require('uuid');
+    uuid = require('uuid'),
+    Twit = require('twit'),
+    Q = require('q');
 
 module.exports = function (app) {
     var oauthConfig = app.get('config').oauth[app.get('options').oauth || app.get('options').env];
 
     var getOAuthData = function (auth) {
-        var user = {};
+        var deferred = Q.defer();
+
+        var user = {
+            provider: auth.service,
+            apiKey: uuid.v1(),
+            email: null,
+            picture: null
+        };
 
         switch (auth.service) {
         case 'google':
             user.providerId = auth.data.id;
             user.name = auth.data.name;
+
+            if (auth.data.verified_email) {
+                user.email = auth.data.email;
+            }
+
+            user.picture = auth.data.picture;
+
+            deferred.resolve(user);
             break;
         case 'twitter':
             user.providerId = auth.data.user_id;
             user.name = auth.data.screen_name;
+
+            new Twit({
+                consumer_key: oauthConfig.twitter.id,
+                consumer_secret: oauthConfig.twitter.secret,
+                access_token: auth.token,
+                access_token_secret: auth.secret
+            }).get('users/show', { screen_name: auth.data.screen_name }, function(err, result) {
+                user.picture = result.profile_image_url;
+                deferred.resolve(user);
+            });
+
             break;
         case 'facebook':
             user.providerId = auth.data.id;
             user.name = auth.data.name;
+            user.email = auth.data.email;
+            user.picture = auth.data.picture.data.url;
+
+            deferred.resolve(user);
             break;
         case 'vkontakte':
             user.providerId = auth.data.response[0].id.toString();
-            user.name = auth.data.response[0].first_name + ' ' + auth.data.response[0].last_name;
+            user.name = auth.data.response[0].screen_name;
+            user.picture = auth.data.response[0].photo;
+
+            deferred.resolve(user);
         }
 
-        user.provider = auth.service;
-        user.apiKey = uuid.v1();
-
-        return user;
+        return deferred.promise;
     };
 
     for (var service in oauthConfig) {
@@ -37,9 +69,7 @@ module.exports = function (app) {
         authom.createServer(options);
     }
 
-    authom.on('auth', function (req, res, auth) {
-        auth = getOAuthData(auth);
-
+    var authorize = function(req, res, auth) {
         var errFn = function (err) {
             app.get('log').error(err.stack);
             res.redirect('/#/error/500');
@@ -49,14 +79,12 @@ module.exports = function (app) {
             req.session.regenerate(function () {
                 req.session.user = user.id.toString();
 
-                if (req.params.type === 'mobile') {
-                    res.redirect('/api/' + user.apiKey + '/user/empty');
+                if (req.device.type === 'phone' || req.device.type === 'tablet') {
+                    res.redirect('/api/' + user.apiKey + '/user/redirect');
                     return;
                 }
 
-                if (req.params.type === 'default') {
-                    res.redirect('/');
-                }
+                res.redirect('/');
             });
         };
 
@@ -67,14 +95,36 @@ module.exports = function (app) {
                     .getUser()
                     .success(function (user) {
                         if (user) {
-                            return successFn(user);
+                            if (auth.email && !user.email) {
+                                user.email = auth.email;
+                            }
+
+                            if (auth.picture && !user.picture) {
+                                user.picture = auth.picture;
+                            }
+
+                            user
+                                .save()
+                                .success(function(user) {
+                                    successFn(user);
+                                })
+                                .error(errFn);
+
+                            return;
                         }
 
-                        app.get('models').User
-                            .create({ name: auth.name, apiKey: auth.apiKey })
+                        var userModel = app.get('models').User;
+
+                        if (auth.email) {
+                            userModel = userModel.findOrCreate({ email: auth.email }, { name: auth.name, apiKey: auth.apiKey, picture: auth.picture });
+                        } else {
+                            userModel = userModel.create({ name: auth.name, apiKey: auth.apiKey, email: auth.email, picture: auth.picture });
+                        }
+
+                        userModel
                             .success(function (user) {
                                 user
-                                    .setProviders([provider])
+                                    .addProvider(provider)
                                     .success(function () {
                                         successFn(user);
                                     })
@@ -85,6 +135,12 @@ module.exports = function (app) {
                     .error(errFn);
             })
             .error(errFn);
+    };
+
+    authom.on('auth', function (req, res, auth) {
+        getOAuthData(auth).then(function(auth) {
+            authorize(req, res, auth);
+        });
     });
 
     authom.on('error', function (req, res, data) {
@@ -128,7 +184,7 @@ module.exports = function (app) {
             .error(next);
     });
 
-    app.get('/auth/:type/:service', authom.app);
+    app.get('/auth/:service', authom.app);
 
     app.get('/logout', app.get('restrict'), function (req, res) {
         req.session.destroy(function () {

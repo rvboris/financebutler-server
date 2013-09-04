@@ -4,9 +4,19 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
+        email: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            unique: true
+        },
+        picture: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
         apiKey: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: true
         }
     });
 };

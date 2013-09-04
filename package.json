@@ -1,7 +1,7 @@
 {
   "name": "financebutler",
   "description": "Simple finance manager",
-  "version": "0.0.29",
+  "version": "0.0.33",
   "keywords": [
     "finance",
     "money"
@@ -50,6 +50,9 @@
     "moment": "~2.1.0",
     "grunt-contrib-compress": "~0.5.2",
     "opter": "~0.4.0",
-    "commander": "~2.0.0"
+    "commander": "~2.0.0",
+    "express-device": "~0.3.7",
+    "twit": "~1.1.9",
+    "q": "~0.9.7"
   }
 }

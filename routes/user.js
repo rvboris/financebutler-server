@@ -5,8 +5,8 @@ module.exports = function (app) {
             res.json({ name: req.user.name, apiKey: req.user.apiKey });
         });
 
-        app.get('/empty', app.get('restRestrict'), function (req, res) {
-            res.send(200);
+        app.get('/redirect', app.get('restRestrict'), function (req, res) {
+            res.redirect('/');
         });
 
     });

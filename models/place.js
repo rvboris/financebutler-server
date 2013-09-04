@@ -2,9 +2,16 @@ module.exports = function (sequelize, DataTypes) {
     return sequelize.define('Place', {
         name: {
             type: DataTypes.STRING,
+            allowNull: false,
+            unique: true
+        },
+        latitude: {
+            type: DataTypes.FLOAT,
             allowNull: false
         },
-        lat: DataTypes.FLOAT,
-        long: DataTypes.FLOAT
+        longitude: {
+            type: DataTypes.FLOAT,
+            allowNull: false
+        }
     });
 };

@@ -7,6 +7,7 @@ var fs = require('fs-tools'),
     Models = require(path.join(__dirname, 'models', 'index.js')),
     SessionStore = require(path.join(__dirname, 'system', 'session.js'))(express),
     namespace = require('express-namespace'),
+    device = require('express-device'),
     app = express();
 
 require('connect-domain');
@@ -63,6 +64,7 @@ app.set('view engine', 'html');
 app.engine('html', require('hbs').__express);
 
 app.use(express.bodyParser());
+app.use(device.capture());
 app.use(express.methodOverride());
 app.use(express.cookieParser(app.get('config').secret));
 app.use(express.session({
@@ -90,6 +92,8 @@ require(path.join(__dirname, 'system', 'auth.js'))(app);
 fs.walkSync(path.join(__dirname, 'routes'), function (routeFile) {
     require(routeFile)(app);
 });
+
+app.enableDeviceHelpers();
 
 app.use(app.router);
 
