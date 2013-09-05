@@ -116,9 +116,22 @@ module.exports = function (app) {
                         var userModel = app.get('models').User;
 
                         if (auth.email) {
-                            userModel = userModel.findOrCreate({ email: auth.email }, { name: auth.name, apiKey: auth.apiKey, picture: auth.picture });
+                            userModel = userModel.findOrCreate({
+                                email: auth.email
+                            }, {
+                                name: auth.name,
+                                apiKey: auth.apiKey,
+                                picture: auth.picture,
+                                locale: req.locale
+                            });
                         } else {
-                            userModel = userModel.create({ name: auth.name, apiKey: auth.apiKey, email: auth.email, picture: auth.picture });
+                            userModel = userModel.create({
+                                name: auth.name,
+                                apiKey: auth.apiKey,
+                                email: auth.email,
+                                picture: auth.picture,
+                                locale: req.locale
+                            });
                         }
 
                         userModel

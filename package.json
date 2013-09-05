@@ -1,7 +1,7 @@
 {
   "name": "financebutler",
   "description": "Simple finance manager",
-  "version": "0.0.33",
+  "version": "0.0.35",
   "keywords": [
     "finance",
     "money"
@@ -13,7 +13,7 @@
       "web": "http://hoursofcode.ru"
     }
   ],
-  "repositories": [
+  "repository": [
     {
       "type": "git",
       "url": "https://bitbucket.org/rvboris/financebutler"
@@ -53,6 +53,7 @@
     "commander": "~2.0.0",
     "express-device": "~0.3.7",
     "twit": "~1.1.9",
-    "q": "~0.9.7"
+    "q": "~0.9.7",
+    "locale": "0.0.10"
   }
 }

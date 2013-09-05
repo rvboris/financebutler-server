@@ -6,11 +6,16 @@ module.exports = function (app) {
                 .find(parseInt(req.session.user, 10))
                 .success(function (user) {
                     if (!user) {
-                        res.render('index');
+                        res.render('index', {
+                            locale: req.locale
+                        });
                         return;
                     }
 
-                    res.render('index', { apiKey: user.apiKey });
+                    res.render('index', {
+                        apiKey: user.apiKey,
+                        locale: user.locale
+                    });
                 })
                 .error(function (err) {
                     app.get('log').error(err.stack);

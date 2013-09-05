@@ -8,6 +8,7 @@ var fs = require('fs-tools'),
     SessionStore = require(path.join(__dirname, 'system', 'session.js'))(express),
     namespace = require('express-namespace'),
     device = require('express-device'),
+    locale = require('locale'),
     app = express();
 
 require('connect-domain');
@@ -72,6 +73,8 @@ app.use(express.session({
     secret: app.get('config').secret
 }));
 
+app.use(locale(app.get('config').locales));
+
 app.use(helmet.xframe());
 app.use(helmet.contentTypeOptions());
 app.use(helmet.cacheControl());
@@ -92,8 +95,6 @@ require(path.join(__dirname, 'system', 'auth.js'))(app);
 fs.walkSync(path.join(__dirname, 'routes'), function (routeFile) {
     require(routeFile)(app);
 });
-
-app.enableDeviceHelpers();
 
 app.use(app.router);
 

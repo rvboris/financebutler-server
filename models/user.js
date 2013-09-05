@@ -13,6 +13,10 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: true
         },
+        locale: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         apiKey: {
             type: DataTypes.STRING,
             allowNull: false,
