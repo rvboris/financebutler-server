@@ -3,6 +3,7 @@ var fs = require('fs-tools'),
     opter = require('opter'),
     helmet = require('helmet'),
     express = require('express'),
+    params = require('express-params'),
     Log = require('log'),
     Models = require(path.join(__dirname, 'models', 'index.js')),
     SessionStore = require(path.join(__dirname, 'system', 'session.js'))(express),
@@ -47,6 +48,8 @@ app.set('options', opter({
 }, require('./package.json').version));
 
 app.set('config', require(path.join(__dirname, 'config.json')));
+
+params.extend(app);
 
 if (app.get('options').env === 'production') { // workaround for PM2
     app.set('log', new Log('error'));

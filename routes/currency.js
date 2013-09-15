@@ -3,7 +3,7 @@ module.exports = function (app) {
 
         app.get('/', app.get('restRestrict'), function (req, res) {
             app.get('models').Currency
-                .findAll()
+                .findAll({ where: { locale: req.user.locale } })
                 .success(function (currency) {
                     res.json(currency);
                 })

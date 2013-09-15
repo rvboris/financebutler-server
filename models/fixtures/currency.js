@@ -4,7 +4,7 @@ module.exports = function(models, config) {
     var data = [];
 
     config.locales.forEach(function(locale) {
-        var currency = require(path.join(__dirname, locale, 'currency.json'));
+        var currency = require(path.join(__dirname, locale.toLowerCase(), 'currency.json'));
 
         for (var code in currency) {
             data.push({
