@@ -109,7 +109,6 @@ module.exports = function (app) {
                 .add(app.get('models').Currency, 'find', [req.body.currency])
                 .runSerially({ skipOnError: true })
                 .success(function(results) {
-                    console.log(results);
                     var account = results[0];
                     var currency = results[1];
 

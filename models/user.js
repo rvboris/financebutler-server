@@ -17,6 +17,10 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
+        socialSync: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false
+        },
         apiKey: {
             type: DataTypes.STRING,
             allowNull: false,

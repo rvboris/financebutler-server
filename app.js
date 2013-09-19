@@ -10,6 +10,7 @@ var fs = require('fs-tools'),
     namespace = require('express-namespace'),
     device = require('express-device'),
     locale = require('locale'),
+    _ = require('lodash'),
     app = express();
 
 require('connect-domain');
@@ -76,7 +77,7 @@ app.use(express.session({
     secret: app.get('config').secret
 }));
 
-app.use(locale(app.get('config').locales));
+app.use(locale(_.keys(app.get('config').locales)));
 
 app.use(helmet.xframe());
 app.use(helmet.contentTypeOptions());
