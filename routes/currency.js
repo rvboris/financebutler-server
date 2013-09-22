@@ -1,13 +1,37 @@
-module.exports = function (app) {
-    app.namespace('/api/:apiKey/currency', function () {
+var _ = require('lodash');
 
-        app.get('/', app.get('restRestrict'), function (req, res) {
-            app.get('models').Currency
-                .findAll({ where: { locale: req.user.locale } })
-                .success(function (currency) {
-                    res.json(currency);
+module.exports = function(app) {
+    app.namespace('/api/:apiKey/currency', function() {
+
+        app.get('/', app.get('restRestrict'), app.get('cacher').cache('days'), function(req, res) {
+            req.user
+                .getLocale()
+                .success(function(locale) {
+                    locale
+                        .getLocaleCurrency()
+                        .success(function(localeCurrencyList) {
+                            var currencyIds = _.map(localeCurrencyList, function(localeCurrency) {
+                                return localeCurrency.currencyId;
+                            });
+
+                            app.get('models').Currency
+                                .findAll({ where: { id: currencyIds } })
+                                .success(function(currencyList) {
+                                    res.send(_.map(currencyList, function(currency, idx) {
+                                        return { id: currency.id, code: currency.code, name: localeCurrencyList[idx].name };
+                                    }));
+                                })
+                                .error(function(err) {
+                                    app.get('log').error(err.stack);
+                                    res.send(500);
+                                });
+                        })
+                        .error(function(err) {
+                            app.get('log').error(err.stack);
+                            res.send(500);
+                        });
                 })
-                .error(function (err) {
+                .error(function(err) {
                     app.get('log').error(err.stack);
                     res.send(500);
                 });

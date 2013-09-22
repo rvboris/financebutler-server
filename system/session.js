@@ -1,6 +1,7 @@
-var Sequelize = require('sequelize');
+var Sequelize = require('sequelize'),
+    _ = require('lodash');
 
-module.exports = function (express) {
+module.exports = function(express) {
     var Store = express.session.Store;
 
     function SequelizeStore(app) {
@@ -8,12 +9,12 @@ module.exports = function (express) {
         this.model = app.get('models').Session;
     }
 
-    SequelizeStore.prototype.__proto__ = Store.prototype;
+    SequelizeStore.prototype = Store.prototype;
 
-    SequelizeStore.prototype.get = function (sid, fn) {
+    SequelizeStore.prototype.get = function(sid, fn) {
         this.model
             .find({ where: { 'sid': sid } })
-            .success(function (session) {
+            .success(function(session) {
                 if (!session) {
                     fn();
                     return;
@@ -29,21 +30,21 @@ module.exports = function (express) {
             .error(fn);
     };
 
-    SequelizeStore.prototype.set = function (sid, data, fn) {
+    SequelizeStore.prototype.set = function(sid, data, fn) {
         var stringData = JSON.stringify(data);
 
         this.model
             .findOrCreate({ 'sid': sid }, { 'data': stringData })
-            .success(function (session) {
+            .success(function(session) {
                 if (session.data !== stringData) {
                     session.data = JSON.stringify(data);
                     session
                         .save()
-                        .success(function () {
+                        .success(function() {
                             if (fn) {
                                 fn(null, data);
                             }
-                        }).error(function (error) {
+                        }).error(function(error) {
                             if (fn) {
                                 fn(error);
                             }
@@ -52,20 +53,20 @@ module.exports = function (express) {
                     fn(null, session);
                 }
             })
-            .error(function (error) {
+            .error(function(error) {
                 if (fn) {
                     fn(error);
                 }
             });
     };
 
-    SequelizeStore.prototype.destroy = function (sid, fn) {
+    SequelizeStore.prototype.destroy = function(sid, fn) {
         this.model
             .find({ where: { 'sid': sid } })
-            .success(function (session) {
+            .success(function(session) {
                 session.destroy().success(fn).error(fn);
             })
-            .error(function (error) {
+            .error(function(error) {
                 if (fn) {
                     fn(error);
                 }
@@ -73,22 +74,22 @@ module.exports = function (express) {
     };
 
     //noinspection JSValidateTypes
-    SequelizeStore.prototype.length = function (fn) {
+    SequelizeStore.prototype.length = function(fn) {
         this.model
             .count()
-            .success(function (c) {
+            .success(function(c) {
                 fn(null, c);
             })
             .error(fn);
     };
 
-    SequelizeStore.prototype.clear = function (fn) {
+    SequelizeStore.prototype.clear = function(fn) {
         this.model
             .findAll()
-            .success(function (sessions) {
+            .success(function(sessions) {
                 var chainer = new Sequelize.Utils.QueryChainer();
 
-                Sequelize.Utils._.each(sessions, function (session) {
+                _.each(sessions, function(session) {
                     chainer.add(session.destroy());
                 });
 
@@ -98,4 +99,4 @@ module.exports = function (express) {
     };
 
     return SequelizeStore;
-}
+};

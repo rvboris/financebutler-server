@@ -1,9 +1,8 @@
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define('Category', {
+    return sequelize.define('LocaleCategoryDefault', {
         name: {
             type: DataTypes.STRING,
             allowNull: false
-        },
-        type: DataTypes.ENUM('out', 'in')
+        }
     });
 };

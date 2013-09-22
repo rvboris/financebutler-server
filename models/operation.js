@@ -4,21 +4,6 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.DECIMAL,
             allowNull: false
         },
-        comment: DataTypes.STRING,
-        accountId: {
-            type: DataTypes.INTEGER,
-            references: "Account",
-            referencesKey: "id"
-        },
-        categoryId: {
-            type: DataTypes.INTEGER,
-            references: "Category",
-            referencesKey: "id"
-        },
-        placeId: {
-            type: DataTypes.INTEGER,
-            references: "Place",
-            referencesKey: "id"
-        }
+        comment: DataTypes.STRING
     });
 };

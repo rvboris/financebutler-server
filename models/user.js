@@ -1,4 +1,4 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
     return sequelize.define('User', {
         name: {
             type: DataTypes.STRING,
@@ -12,14 +12,6 @@ module.exports = function (sequelize, DataTypes) {
         picture: {
             type: DataTypes.STRING,
             allowNull: true
-        },
-        locale: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        socialSync: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false
         },
         apiKey: {
             type: DataTypes.STRING,

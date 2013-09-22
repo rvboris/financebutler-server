@@ -1,10 +1,10 @@
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define('Provider', {
-        providerId: {
+    return sequelize.define('Locale', {
+        name: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        provider: {
+        code: {
             type: DataTypes.STRING,
             allowNull: false
         }

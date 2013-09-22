@@ -1,0 +1,30 @@
+[
+    {
+        "name": "Авто",
+        "type": "out",
+        "childrens": [
+            {
+                "name": "Сервис",
+                "type": "out"
+            },
+            {
+                "name": "Бензин",
+                "type": "out"
+            }
+        ]
+    },
+    {
+        "name": "Платежи",
+        "type": "out",
+        "childrens": [
+            {
+                "name": "Квартира",
+                "type": "out"
+            },
+            {
+                "name": "Телефон",
+                "type": "out"
+            }
+        ]
+    }
+]

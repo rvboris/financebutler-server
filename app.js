@@ -2,12 +2,13 @@ var fs = require('fs-tools'),
     path = require('path'),
     opter = require('opter'),
     helmet = require('helmet'),
+    namespace = require('express-namespace'),
     express = require('express'),
+    Cacher = require("cacher"),
     params = require('express-params'),
     Log = require('log'),
     Models = require(path.join(__dirname, 'models', 'index.js')),
     SessionStore = require(path.join(__dirname, 'system', 'session.js'))(express),
-    namespace = require('express-namespace'),
     device = require('express-device'),
     locale = require('locale'),
     _ = require('lodash'),
@@ -49,6 +50,7 @@ app.set('options', opter({
 }, require('./package.json').version));
 
 app.set('config', require(path.join(__dirname, 'config.json')));
+app.set('cacher', new Cacher());
 
 params.extend(app);
 
@@ -59,7 +61,7 @@ if (app.get('options').env === 'production') { // workaround for PM2
     Error.stackTraceLimit = Infinity;
 }
 
-process.on('uncaughtException', function (err) {
+process.on('uncaughtException', function(err) {
     app.get('log').error(err.stack);
 });
 
@@ -83,12 +85,12 @@ app.use(helmet.xframe());
 app.use(helmet.contentTypeOptions());
 app.use(helmet.cacheControl());
 
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
     app.get('log').info('%s %s', req.method, req.url);
     next();
 });
 
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
     app.get('log').error(err);
     res.send(500, 'Houston, we have a problem!\n');
     next(err);
@@ -96,7 +98,7 @@ app.use(function (err, req, res, next) {
 
 require(path.join(__dirname, 'system', 'auth.js'))(app);
 
-fs.walkSync(path.join(__dirname, 'routes'), function (routeFile) {
+fs.walkSync(path.join(__dirname, 'routes'), function(routeFile) {
     require(routeFile)(app);
 });
 
@@ -111,6 +113,6 @@ if (app.get('options').env === 'production') {
     app.set('views', path.join(__dirname, 'frontend', 'app'));
 }
 
-app.listen(app.get('options').port, function () {
+app.listen(app.get('options').port, function() {
     app.get('log').info('worker listening on port %s', app.get('options').port);
 });
