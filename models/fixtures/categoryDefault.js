@@ -1,28 +1,28 @@
 var path = require('path'),
     _ = require('lodash'),
     Q = require('q'),
-    Sequelize = require('sequelize');
+    Sequelize = require('sequelize'),
+    traverse = require('traverse');
 
 module.exports = function(models) {
     var deferred = Q.defer();
     var chainer = new Sequelize.Utils.QueryChainer();
     var categoryDefaultData = [];
 
-    var flatten = function(root) {
-        _.each(root, function(category) {
-            categoryDefaultData.push({ name: category.name, type: category.type });
-
-            if (category.childrens) {
-                flatten(category.childrens);
-            }
-        });
-    };
-
     models.Locale
         .findAll()
         .success(function(locales) {
             _.each(locales, function(locale) {
-                flatten(require(path.join(__dirname, locale.code.toLowerCase(), 'categoryDefault.json')));
+                var src = require(path.join(__dirname, locale.code.toLowerCase(), 'categoryDefault.json'));
+                var leaves = traverse(src).reduce(function(acc, x) {
+                    if (this.isLeaf && this.key === 'name') {
+                        acc.push(x);
+                    }
+
+                    return acc;
+                }, []);
+
+                categoryDefaultData = categoryDefaultData.concat(leaves);
             });
 
             var complete = _.after(categoryDefaultData.length, function() {
@@ -31,9 +31,11 @@ module.exports = function(models) {
 
             var createChainer = new Sequelize.Utils.QueryChainer();
 
-            _.each(categoryDefaultData, function() {
+            var categoriesPerLocale = categoryDefaultData.length / locales.length;
+
+            for (var i = 0; i < categoriesPerLocale; i++) {
                 createChainer.add(models.CategoryDefault.create());
-            });
+            }
 
             createChainer
                 .run()
@@ -41,15 +43,15 @@ module.exports = function(models) {
                     models.CategoryDefault
                         .findAll()
                         .success(function(categoryDefaultList) {
-                            _.each(locales, function(locale) {
-                                _.each(categoryDefaultList, function(categoryDefault, idx) {
+                            _.each(locales, function(locale, localeIdx) {
+                                _.each(categoryDefaultList, function(categoryDefault, categoryIdx) {
                                     models.LocaleCategoryDefault
-                                        .create({ name: categoryDefaultData[idx].name })
-                                        .success(function(localeCategoryDefault) {
-                                            chainer.add(localeCategoryDefault.setLocale(locale));
-                                            chainer.add(localeCategoryDefault.setCategoryDefault(categoryDefault));
-                                            complete();
+                                        .create({
+                                            name: categoryDefaultData[categoryIdx + localeIdx * categoriesPerLocale],
+                                            localeId: locale.id,
+                                            categoryDefaultId: categoryDefault.id
                                         })
+                                        .success(complete)
                                         .error(deferred.reject);
                                 });
                             });

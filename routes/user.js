@@ -27,19 +27,12 @@ module.exports = function(app) {
 
                     req.user.name = req.body.name;
                     req.user.email = req.body.email;
+                    req.user.localeId = locale.id;
 
                     req.user
                         .save()
                         .success(function(user) {
-                            user
-                                .setLocale(locale)
-                                .success(function(user) {
-                                    res.send(user);
-                                })
-                                .error(function(err) {
-                                    app.get('log').error(err.stack);
-                                    res.send(500);
-                                });
+                            res.send(user);
                         })
                         .error(function(err) {
                             app.get('log').error(err.stack);

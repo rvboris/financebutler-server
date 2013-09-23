@@ -1,7 +1,11 @@
 var authom = require('authom'),
     uuid = require('uuid'),
     Twit = require('twit'),
-    Q = require('q');
+    Q = require('q'),
+    Sequelize = require('sequelize'),
+    _ = require('lodash'),
+    path = require('path'),
+    TreeModel = require('tree-model');
 
 module.exports = function(app) {
     var oauthConfig = app.get('config').oauth[app.get('options').oauth || app.get('options').env];
@@ -77,7 +81,97 @@ module.exports = function(app) {
             res.redirect('/#/error/500');
         };
 
-        var successFn = function(user) {
+        var successFn = function(user, locale) {
+            if (locale !== true) {
+                app.get('models').CategoryDefault
+                    .findAll()
+                    .success(function(categoryDefaultList) {
+                        var chainer = new Sequelize.Utils.QueryChainer();
+
+                        _.each(categoryDefaultList, function(categoryDefault) {
+                            chainer.add(app.get('models').Category.create({ userId: user.id, categoryDefaultId: categoryDefault.id }));
+                        });
+
+                        chainer
+                            .run()
+                            .success(function() {
+                                locale.getLocaleCategoryDefaults()
+                                    .success(function(localeCategoryDefaultList) {
+                                        var categoriesSource = require(path.join(__dirname, '..', 'models', 'fixtures', locale.code.toLowerCase(), 'categoryDefault.json'));
+
+                                        app.get('models').Category
+                                            .findAll({ where: { userId: user.id } })
+                                            .success(function(userCategories) {
+                                                var setParents = function(root, parent) {
+                                                    _.each(root, function(categorySrc) {
+                                                        var userCategory = _.find(userCategories, function(userCategory) {
+                                                            return userCategory.id === categorySrc.id;
+                                                        });
+
+                                                        if (userCategory) {
+                                                            if (parent) {
+                                                                userCategory.parentId = parent.id;
+                                                            }
+
+                                                            chainer.add(userCategory.save());
+                                                        }
+
+                                                        if (categorySrc.children) {
+                                                            setParents(categorySrc.children, categorySrc);
+                                                        }
+                                                    });
+                                                };
+
+                                                _.each(categoriesSource, function(category) {
+                                                    var categoriesTree = new TreeModel();
+                                                    var categoriesRoot = categoriesTree.parse(category);
+
+                                                    categoriesRoot.walk(function(node) {
+                                                        var categoryDefault = _.find(localeCategoryDefaultList, function(localeCategoryDefault) {
+                                                            return localeCategoryDefault.name === node.model.name;
+                                                        });
+
+                                                        if (!categoryDefault) {
+                                                            return;
+                                                        }
+
+                                                        node.model.id = categoryDefault.id;
+
+                                                        var userCategory = _.find(userCategories, function(category) {
+                                                            return category.id === categoryDefault.id;
+                                                        });
+
+                                                        if (!userCategory) {
+                                                            return;
+                                                        }
+
+                                                        userCategory.type = node.model.type;
+                                                    });
+                                                });
+
+                                                setParents(categoriesSource);
+
+                                                chainer
+                                                    .run()
+                                                    .success(function() {
+                                                        createSession(req, res, user);
+                                                    })
+                                                    .error(errFn);
+                                            })
+                                            .error(errFn);
+                                    })
+                                    .error(errFn);
+                            })
+                            .error(errFn);
+                    })
+                    .error(errFn);
+                return;
+            }
+
+            createSession(req, res, user);
+        };
+
+        var createSession = function(req, res, user) {
             req.session.regenerate(function() {
                 req.session.user = user.id.toString();
 
@@ -108,7 +202,7 @@ module.exports = function(app) {
                             user
                                 .save()
                                 .success(function(user) {
-                                    successFn(user);
+                                    successFn(user, true);
                                 })
                                 .error(errFn);
 
@@ -126,26 +220,26 @@ module.exports = function(app) {
                                     }, {
                                         name: auth.name,
                                         apiKey: auth.apiKey,
-                                        picture: auth.picture
+                                        picture: auth.picture,
+                                        localeId: locale.id
                                     });
                                 } else {
                                     userModel = userModel.create({
                                         name: auth.name,
                                         apiKey: auth.apiKey,
                                         email: auth.email,
-                                        picture: auth.picture
+                                        picture: auth.picture,
+                                        localeId: locale.id
                                     });
                                 }
 
                                 userModel
                                     .success(function(user) {
+
                                         user
-                                            .setLocale(locale)
+                                            .addProvider(provider)
                                             .success(function(user) {
-                                                user
-                                                    .addProvider(provider)
-                                                    .success(successFn)
-                                                    .error(errFn);
+                                                successFn(user, locale);
                                             })
                                             .error(errFn);
                                     })

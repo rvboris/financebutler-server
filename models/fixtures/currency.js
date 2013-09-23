@@ -43,12 +43,8 @@ module.exports = function(models) {
                                     }).name;
 
                                     models.LocaleCurrency
-                                        .create({ name: currencyName })
-                                        .success(function(localeCurrency) {
-                                            chainer.add(localeCurrency.setLocale(locale));
-                                            chainer.add(localeCurrency.setCurrency(currency));
-                                            complete();
-                                        })
+                                        .create({ name: currencyName, localeId: locale.id, currencyId: currency.id })
+                                        .success(complete)
                                         .error(deferred.reject);
                                 });
                             });

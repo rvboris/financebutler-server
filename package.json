@@ -56,6 +56,8 @@
     "q": "~0.9.7",
     "locale": "0.0.10",
     "express-params": "0.0.3",
-    "cacher": "~1.0.1"
+    "cacher": "~1.0.1",
+    "traverse": "~0.6.5",
+    "tree-model": "~0.3.0"
   }
 }

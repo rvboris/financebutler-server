@@ -82,8 +82,8 @@ module.exports = function(app) {
     this.Category.belongsTo(this.CategoryDefault, { as: 'Default', foreignKey: 'categoryDefaultId', onDelete: 'restrict' });
     this.Category.hasMany(this.Category, { as: 'Childrens', foreignKey: 'parentId', useJunctionTable: false });
 
+    this.Category.belongsTo(this.User, { as: 'User', foreignKey: 'userId', onDelete: 'cascade' });
     this.User.hasMany(this.Category, { as: 'Categories', foreignKey: 'userId' });
-    this.Category.hasMany(this.User, { as: 'Users', foreignKey: 'userId' });
 
     var loadFixturesData = _.bind(function(models) {
         var promises = [];

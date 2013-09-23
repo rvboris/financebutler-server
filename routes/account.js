@@ -35,26 +35,12 @@ module.exports = function(app) {
                         .create({
                             name: req.body.name,
                             startValue: req.body.startValue,
-                            currentValue: req.body.startValue
+                            currentValue: req.body.startValue,
+                            userId: req.user.id,
+                            currencyId: currency.id
                         })
                         .success(function(account) {
-                            account
-                                .setUser(req.user)
-                                .success(function(account) {
-                                    account
-                                        .setCurrency(currency)
-                                        .success(function(account) {
-                                            res.send(account);
-                                        })
-                                        .error(function(err) {
-                                            app.get('log').error(err.stack);
-                                            res.send(500);
-                                        });
-                                })
-                                .error(function(err) {
-                                    app.get('log').error(err.stack);
-                                    res.send(500);
-                                });
+                            res.send(account);
                         })
                         .error(function(err) {
                             app.get('log').error(err.stack);
@@ -134,19 +120,12 @@ module.exports = function(app) {
 
                             account.name = req.body.name;
                             account.startValue = req.body.startValue;
+                            account.currencyId = currency.id;
 
                             account
                                 .save()
                                 .success(function(account) {
-                                    account
-                                        .setCurrency(currency)
-                                        .success(function(account) {
-                                            res.send(account);
-                                        })
-                                        .error(function(err) {
-                                            app.get('log').error(err.stack);
-                                            res.send(500);
-                                        });
+                                    res.send(account);
                                 })
                                 .error(function(err) {
                                     app.get('log').error(err.stack);

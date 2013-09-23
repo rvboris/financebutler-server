@@ -1,28 +1,286 @@
 [
     {
-        "name": "Авто",
+        "name": "Uncategorized",
+        "type": "any"
+    },
+    {
+        "name": "Adjustment",
+        "type": "any"
+    },
+    {
+        "name": "Salary",
+        "type": "in"
+    },
+    {
+        "name": "Jobs",
+        "type": "in"
+    },
+    {
+        "name": "Other income",
+        "type": "in"
+    },
+    {
+        "name": "Food",
         "type": "out",
-        "childrens": [
+        "children": [
             {
-                "name": "Сервис",
+                "name": "Lunch at work",
                 "type": "out"
             },
             {
-                "name": "Бензин",
+                "name": "Home Products",
+                "type": "out"
+            },
+            {
+                "name": "Cafes and restaurants",
+                "type": "out"
+            },
+            {
+                "name": "Service Delivery",
                 "type": "out"
             }
         ]
     },
     {
-        "name": "Платежи",
+        "name": "Clothing",
         "type": "out",
-        "childrens": [
+        "children": [
             {
-                "name": "Квартира",
+                "name": "Accessories",
                 "type": "out"
             },
             {
-                "name": "Телефон",
+                "name": "UNDERWEAR",
+                "type": "out"
+            }
+        ]
+    },
+    {
+        "name": "Medicine",
+        "type": "out",
+        "children": [
+            {
+                "name": "Pharmacy",
+                "type": "out"
+            },
+            {
+                "name": "Analyses",
+                "type": "out"
+            },
+            {
+                "name": "Consultations Hospital",
+                "type": "out"
+            },
+            {
+                "name": "Another medicine",
+                "type": "out"
+            }
+        ]
+    },
+    {
+        "name": "Home",
+        "type": "out",
+        "children": [
+            {
+                "name": "Household",
+                "type": "out"
+            },
+            {
+                "name": "Repair",
+                "type": "out"
+            },
+            {
+                "name": "Baby",
+                "type": "out"
+            },
+            {
+                "name": "Animals",
+                "type": "out"
+            },
+            {
+                "name": "Interior",
+                "type": "out"
+            },
+            {
+                "name": "Electrical, plumbing",
+                "type": "out"
+            },
+            {
+                "name": "Dacha plot",
+                "type": "out"
+            }
+        ]
+    },
+    {
+        "name": "Car",
+        "type": "out",
+        "children": [
+            {
+                "name": "Fuel",
+                "type": "out"
+            },
+            {
+                "name": "Tools",
+                "type": "out"
+            },
+            {
+                "name": "Insurance",
+                "type": "out"
+            },
+            {
+                "name": "Spare Parts",
+                "type": "out"
+            },
+            {
+                "name": "Other car costs",
+                "type": "out"
+            }
+        ]
+    },
+    {
+        "name": "Transportation",
+        "type": "out",
+        "children": [
+            {
+                "name": "Public Transport",
+                "type": "out"
+            },
+            {
+                "name": "Taxis",
+                "type": "out"
+            },
+            {
+                "name": "M / D tickets",
+                "type": "out"
+            },
+            {
+                "name": "Air Tickets",
+                "type": "out"
+            },
+            {
+                "name": "Other Services",
+                "type": "out"
+            }
+        ]
+    },
+    {
+        "name": "Payments",
+        "type": "out",
+        "children": [
+            {
+                "name": "Utilities",
+                "type": "out",
+                "children": [
+                    {
+                        "name": "Electricity",
+                        "type": "out"
+                    },
+                    {
+                        "name": "Rent",
+                        "type": "out"
+                    },
+                    {
+                        "name": "Phone",
+                        "type": "out"
+                    },
+                    {
+                        "name": "Water",
+                        "type": "out"
+                    }
+                ]
+            },
+            {
+                "name": "Cellular",
+                "type": "out"
+            },
+            {
+                "name": "internet",
+                "type": "out",
+                "children": [
+                    {
+                        "name": "Abonetskaya fee",
+                        "type": "out"
+                    },
+                    {
+                        "name": "Services",
+                        "type": "out"
+                    }
+                ]
+            },
+            {
+                "name": "Television",
+                "type": "out"
+            },
+            {
+                "name": "Education",
+                "type": "out"
+            },
+            {
+                "name": "Gos. services",
+                "type": "out"
+            },
+            {
+                "name": "Banking",
+                "type": "out"
+            },
+            {
+                "name": "Subscriptions",
+                "type": "out"
+            },
+            {
+                "name": "Other payments",
+                "type": "out"
+            }
+        ]
+    },
+    {
+        "name": "Tech",
+        "type": "out",
+        "children": [
+            {
+                "name": "Home Appliances",
+                "type": "out"
+            },
+            {
+                "name": "Mobile Gadgets",
+                "type": "out"
+            },
+            {
+                "name": "Computers",
+                "type": "out"
+            },
+            {
+                "name": "Tools",
+                "type": "out"
+            },
+            {
+                "name": "Another technique",
+                "type": "out"
+            }
+        ]
+    },
+    {
+        "name": "Sporting Goods",
+        "type": "out"
+    },
+    {
+        "name": "Other expenses",
+        "type": "out",
+        "children": [
+            {
+                "name": "Gifts , holidays",
+                "type": "out"
+            },
+            {
+                "name": "Leisure",
+                "type": "out"
+            },
+            {
+                "name": "One-off costs",
+                "type": "out"
+            },
+            {
+                "name": "Personal Care",
                 "type": "out"
             }
         ]
