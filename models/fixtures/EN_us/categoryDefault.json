@@ -102,11 +102,7 @@
                 "type": "out"
             },
             {
-                "name": "Electrical, plumbing",
-                "type": "out"
-            },
-            {
-                "name": "Dacha plot",
+                "name": "Another",
                 "type": "out"
             }
         ]
@@ -185,6 +181,10 @@
                     },
                     {
                         "name": "Water",
+                        "type": "out"
+                    },
+                    {
+                        "name": "Gas",
                         "type": "out"
                     }
                 ]
