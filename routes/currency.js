@@ -1,7 +1,7 @@
 var _ = require('lodash');
 
 module.exports = function(app) {
-    app.namespace('/api/:apiKey/currency', function() {
+    app.namespace('/:apiType(api|api-mobile)/:apiKey/currency', function() {
 
         app.get('/', app.get('restRestrict'), app.get('cacher').cache('days'), function(req, res) {
             req.user

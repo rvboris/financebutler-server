@@ -1,7 +1,7 @@
 module.exports = function(app) {
     app.param('userId', Number);
 
-    app.namespace('/api/:apiKey/user', function() {
+    app.namespace('/:apiType(api|api-mobile)/:apiKey/user', function() {
 
         app.get('/', app.get('restRestrict'), function(req, res) {
             res.send([req.user]);

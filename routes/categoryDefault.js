@@ -1,11 +1,11 @@
 module.exports = function(app) {
-    app.namespace('/:apiType(api|api-mobile)/:apiKey/locale', function() {
+    app.namespace('/:apiType(api|api-mobile)/:apiKey/category-default', function() {
 
         app.get('/', app.get('restRestrict'), function(req, res) {
-            app.get('models').Locale
+            app.get('models').CategoryDefault
                 .findAll()
-                .success(function(locales) {
-                    res.send(locales);
+                .success(function(categoryDefaultList) {
+                    res.send(categoryDefaultList);
                 })
                 .error(function(err) {
                     app.get('log').error(err.stack);

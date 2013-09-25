@@ -1,5 +1,6 @@
 var _ = require('lodash'),
-    Q = require('q');
+    Q = require('q'),
+    uuid = require('uuid');
 
 module.exports = function(models, config) {
     var deferred = Q.defer();
@@ -8,7 +9,8 @@ module.exports = function(models, config) {
     _.keys(config.locales).forEach(function(locale) {
         data.push({
             name: config.locales[locale],
-            code: locale
+            code: locale,
+            uuid: uuid.v1()
         });
     });
 

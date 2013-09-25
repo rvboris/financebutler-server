@@ -2,7 +2,8 @@ var path = require('path'),
     _ = require('lodash'),
     Q = require('q'),
     Sequelize = require('sequelize'),
-    traverse = require('traverse');
+    traverse = require('traverse'),
+    uuid = require('uuid');
 
 module.exports = function(models) {
     var deferred = Q.defer();
@@ -34,7 +35,7 @@ module.exports = function(models) {
             var categoriesPerLocale = categoryDefaultData.length / locales.length;
 
             for (var i = 0; i < categoriesPerLocale; i++) {
-                createChainer.add(models.CategoryDefault.create());
+                createChainer.add(models.CategoryDefault.create({ uuid: uuid.v1() }));
             }
 
             createChainer

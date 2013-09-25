@@ -1,7 +1,7 @@
 var _ = require('lodash');
 
 module.exports = function(app) {
-    app.namespace('/api/:apiKey/category', function() {
+    app.namespace('/:apiType(api|api-mobile)/:apiKey/category', function() {
 
         app.get('/', app.get('restRestrict'), function(req, res) {
             req.user
