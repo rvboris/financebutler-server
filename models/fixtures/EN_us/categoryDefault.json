@@ -1,11 +1,13 @@
 [
     {
         "name": "Uncategorized",
-        "type": "any"
+        "type": "any",
+        "editable": false
     },
     {
         "name": "Adjustment",
-        "type": "any"
+        "type": "any",
+        "editable": false
     },
     {
         "name": "Salary",

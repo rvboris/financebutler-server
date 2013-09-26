@@ -1,11 +1,13 @@
 [
     {
         "name": "Без категории",
-        "type": "any"
+        "type": "any",
+        "editable": false
     },
     {
         "name": "Корректировка",
-        "type": "any"
+        "type": "any",
+        "editable": false
     },
     {
         "name": "Зарплата",

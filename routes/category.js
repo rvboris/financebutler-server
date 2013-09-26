@@ -30,7 +30,8 @@ module.exports = function(app) {
                                             id: category.id,
                                             parentId: category.parentId,
                                             name: categoryName,
-                                            type: category.type
+                                            type: category.type,
+                                            editable: category.editable
                                         };
                                     }));
                                 })

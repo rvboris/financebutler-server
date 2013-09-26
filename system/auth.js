@@ -89,7 +89,7 @@ module.exports = function(app) {
                         var chainer = new Sequelize.Utils.QueryChainer();
 
                         _.each(categoryDefaultList, function(categoryDefault) {
-                            chainer.add(app.get('models').Category.create({ userId: user.id, categoryDefaultId: categoryDefault.id }));
+                            chainer.add(app.get('models').Category.create({ userId: user.id, categoryDefaultId: categoryDefault.id, editable: true }));
                         });
 
                         chainer
@@ -146,6 +146,7 @@ module.exports = function(app) {
                                                         }
 
                                                         userCategory.type = node.model.type;
+                                                        userCategory.editable = !_.isUndefined(node.model.editable) ? node.model.editable : true;
                                                     });
                                                 });
 
