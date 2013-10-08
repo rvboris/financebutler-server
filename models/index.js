@@ -64,19 +64,19 @@ module.exports = function(app) {
     this.Month.belongsTo(this.Account, { as: 'Account', foreignKey: 'accountId', onDelete: 'cascade' });
     this.Account.hasMany(this.Month, { as: 'Months', foreignKey: 'accountId' });
 
-    this.LocaleCurrency.belongsTo(this.Locale, { as: 'Locale', foreignKey: 'localeId', onDelete: 'restrict' });
+    this.LocaleCurrency.belongsTo(this.Locale, { as: 'Locale', foreignKey: 'localeId', onDelete: 'cascade' });
     this.Locale.hasMany(this.LocaleCurrency, { as: 'LocaleCurrency', foreignKey: 'localeId' });
 
-    this.LocaleCurrency.belongsTo(this.Currency, { as: 'Currency', foreignKey: 'currencyId', onDelete: 'restrict' });
+    this.LocaleCurrency.belongsTo(this.Currency, { as: 'Currency', foreignKey: 'currencyId', onDelete: 'cascade' });
     this.Currency.hasMany(this.LocaleCurrency, { as: 'LocaleCurrency', foreignKey: 'currencyId' });
 
     this.Account.belongsTo(this.Currency, { as: 'Currency', foreignKey: 'currencyId', onDelete: 'restrict' });
     this.Currency.hasMany(this.Account, { as: 'Accounts', foreignKey: 'currencyId' });
 
-    this.LocaleCategoryDefault.belongsTo(this.Locale, { as: 'Locale', foreignKey: 'localeId', onDelete: 'restrict' });
+    this.LocaleCategoryDefault.belongsTo(this.Locale, { as: 'Locale', foreignKey: 'localeId', onDelete: 'cascade' });
     this.Locale.hasMany(this.LocaleCategoryDefault, { as: 'LocaleCategoryDefaults', foreignKey: 'localeId' });
 
-    this.LocaleCategoryDefault.belongsTo(this.CategoryDefault, { as: 'CategoryDefault', foreignKey: 'categoryDefaultId', onDelete: 'restrict' });
+    this.LocaleCategoryDefault.belongsTo(this.CategoryDefault, { as: 'CategoryDefault', foreignKey: 'categoryDefaultId', onDelete: 'cascade' });
     this.CategoryDefault.hasMany(this.LocaleCategoryDefault, { as: 'LocaleCategoryDefaults', foreignKey: 'categoryDefaultId' });
 
     this.Category.belongsTo(this.CategoryDefault, { as: 'Default', foreignKey: 'categoryDefaultId', onDelete: 'restrict' });

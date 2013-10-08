@@ -105,7 +105,7 @@ module.exports = function(app) {
                                                 var setParents = function(root, parent) {
                                                     _.each(root, function(categorySrc) {
                                                         var userCategory = _.find(userCategories, function(userCategory) {
-                                                            return userCategory.id === categorySrc.id;
+                                                            return userCategory.categoryDefaultId === categorySrc.id;
                                                         });
 
                                                         if (userCategory) {
@@ -117,7 +117,7 @@ module.exports = function(app) {
                                                         }
 
                                                         if (categorySrc.children) {
-                                                            setParents(categorySrc.children, categorySrc);
+                                                            setParents(categorySrc.children, userCategory);
                                                         }
                                                     });
                                                 };
@@ -135,10 +135,10 @@ module.exports = function(app) {
                                                             return;
                                                         }
 
-                                                        node.model.id = categoryDefault.id;
+                                                        node.model.id = categoryDefault.categoryDefaultId;
 
                                                         var userCategory = _.find(userCategories, function(category) {
-                                                            return category.id === categoryDefault.id;
+                                                            return category.categoryDefaultId === categoryDefault.categoryDefaultId;
                                                         });
 
                                                         if (!userCategory) {

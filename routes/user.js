@@ -28,6 +28,7 @@ module.exports = function(app) {
                     req.user.name = req.body.name;
                     req.user.email = req.body.email;
                     req.user.localeId = locale.id;
+                    req.user.locale = locale;
 
                     req.user
                         .save()
