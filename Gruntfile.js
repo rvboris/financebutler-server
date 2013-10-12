@@ -111,10 +111,28 @@ module.exports = function (grunt) {
             reload: {
                 command: 'pm2 start ~/.pm2/' + (env === 'development' ? 'dev.' : '') + 'financebutler.json',
                 options: '<%= sshAuth %>'
+            },
+            resyncdb: {
+                command: [
+                    'cd <%= deploy.' + env + '.root %>/app',
+                    'node app-cli.js -s true'
+                ].join(' && '),
+                options: '<%= sshAuth %>'
             }
         }
     });
 
-    grunt.registerTask('deploy', ['clean', 'hub', 'bump', 'compress', 'sftp-deploy', 'sshexec']);
+    grunt.registerTask('deploy', [
+        'clean',
+        'hub',
+        'bump',
+        'compress',
+        'sftp-deploy',
+        'sshexec:backup',
+        'sshexec:clean',
+        'sshexec:install',
+        'sshexec:reload'
+    ]);
+
     grunt.registerTask('default', ['deploy']);
 };

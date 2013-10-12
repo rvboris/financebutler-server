@@ -53,7 +53,6 @@ module.exports = function(app) {
                     res.send(200);
                 })
                 .error(function(err) {
-                    console.log(err);
                     app.get('log').error(err.stack);
                     res.send(500);
                 });

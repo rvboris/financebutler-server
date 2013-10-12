@@ -1,5 +1,5 @@
 module.exports = function(app) {
-    app.namespace('/:apiType(api|api-mobile)/:apiKey/locale-currency', function() {
+    app.namespace('/:apiType(api-mobile)/:apiKey/locale-currency', function() {
 
         app.get('/', app.get('restRestrict'), function(req, res) {
             app.get('models').LocaleCurrency

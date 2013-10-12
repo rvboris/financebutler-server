@@ -96,6 +96,8 @@ app.use(function(err, req, res, next) {
     next(err);
 });
 
+app.set('helpers', require(path.join(__dirname, 'system', 'helpers.js')));
+
 require(path.join(__dirname, 'system', 'auth.js'))(app);
 
 fs.walkSync(path.join(__dirname, 'routes'), function(routeFile) {
